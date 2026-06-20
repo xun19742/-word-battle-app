@@ -1,0 +1,6 @@
+<!-- 首页最小可运行内容，后续任务再加入词书与学习入口。 -->
+<view class="page">
+  <view class="card">
+    <text class="title">{{title}}</text>
+  </view>
+</view>

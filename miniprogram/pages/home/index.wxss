@@ -1,0 +1,5 @@
+/* 首页标题建立 MVP 的第一层视觉层级。 */
+.title {
+  font-size: 52rpx;
+  font-weight: 700;
+}

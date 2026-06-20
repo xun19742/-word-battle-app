@@ -1,0 +1,9 @@
+{
+  "name": "wordrush-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "prepare:cloud": "node scripts/prepare-cloud-wordbook.js"
+  }
+}

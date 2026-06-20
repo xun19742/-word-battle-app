@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/home/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "WordRush",
+    "navigationBarBackgroundColor": "#5968E8",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F6F8FF"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

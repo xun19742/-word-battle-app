@@ -1,0 +1,29 @@
+/* 全局设计令牌统一页面背景、卡片和主按钮样式。 */
+page {
+  background: #f6f8ff;
+  color: #24305e;
+  font-size: 30rpx;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.card {
+  padding: 32rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  box-shadow: 0 12rpx 36rpx rgba(72, 88, 160, 0.12);
+}
+
+.primary-button {
+  color: #fff;
+  background: #5968e8;
+  border-radius: 999rpx;
+}
+
+.muted {
+  color: #718096;
+}
