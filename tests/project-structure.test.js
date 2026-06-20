@@ -22,3 +22,9 @@ test('应用注册学习设置页', () => {
   const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
   assert.equal(app.pages.includes('pages/settings/index'), true);
 });
+
+test('应用注册单词卡片页', () => {
+  const appPath = path.join(__dirname, '..', 'miniprogram', 'app.json');
+  const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
+  assert.equal(app.pages.includes('pages/flashcard/index'), true);
+});

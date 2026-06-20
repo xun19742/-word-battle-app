@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/settings/index"
+    "pages/settings/index",
+    "pages/flashcard/index"
   ],
   "window": {
     "navigationBarTitleText": "WordRush",
