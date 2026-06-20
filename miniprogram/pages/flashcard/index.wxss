@@ -1,0 +1,19 @@
+/* 大卡片保持单一视觉焦点，降低背词过程中的干扰。 */
+.progress-header { display: flex; justify-content: space-between; color: #718096; font-size: 25rpx; }
+.progress-track { height: 12rpx; margin: 18rpx 0 48rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
+.progress-value { height: 100%; background: #5968e8; border-radius: 999rpx; }
+.word-card { display: flex; min-height: 640rpx; padding: 48rpx; box-sizing: border-box; flex-direction: column; align-items: center; justify-content: center; background: #fff; border-radius: 36rpx; box-shadow: 0 18rpx 60rpx rgba(72, 88, 160, 0.14); }
+.word-card-revealed { justify-content: flex-start; padding-top: 96rpx; }
+.word { font-size: 68rpx; font-weight: 750; }
+.phonetic { margin-top: 12rpx; color: #718096; }
+.recall-tip { margin-top: 64rpx; color: #5968e8; font-size: 26rpx; }
+.meaning-block { display: flex; width: 100%; margin-top: 64rpx; flex-direction: column; text-align: left; }
+.meaning { font-size: 34rpx; font-weight: 700; }
+.example { margin-top: 36rpx; color: #4a5568; line-height: 1.6; }
+.translation { margin-top: 12rpx; color: #718096; font-size: 26rpx; }
+.action-button, .next-button { margin-top: 36rpx; }
+.answer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 24rpx; margin-top: 36rpx; }
+.unknown-button { color: #d95656; background: #fff1f1; border-radius: 999rpx; }
+.known-button { color: #16845b; background: #ecfdf5; border-radius: 999rpx; }
+.unknown-button::after, .known-button::after { border: 0; }
+.feedback { margin-top: 32rpx; color: #5968e8; text-align: center; font-weight: 700; }

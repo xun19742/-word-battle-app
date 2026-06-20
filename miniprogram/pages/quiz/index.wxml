@@ -1,0 +1,34 @@
+<!-- 四选一页在作答后同时展示正误、正确答案和例句。 -->
+<view class="page" wx:if="{{round}}">
+  <view class="progress-header">
+    <text>第 {{round.currentIndex + 1}} / {{round.size}} 题</text>
+    <text>得分 {{round.correctCount * 10}}</text>
+  </view>
+  <view class="progress-track">
+    <view class="progress-value" style="width: {{((round.currentIndex + 1) / round.size) * 100}}%;"></view>
+  </view>
+
+  <view class="question-card">
+    <text class="word">{{currentWord.word}}</text>
+    <text class="phonetic">{{currentWord.phonetic}}</text>
+  </view>
+
+  <view class="options">
+    <button
+      wx:for="{{options}}"
+      wx:key="*this"
+      class="option {{round.answeredCurrent && item === currentWord.meaning ? 'option-correct' : ''}} {{round.answeredCurrent && item === selected && !isCorrect ? 'option-wrong' : ''}}"
+      data-value="{{item}}"
+      bindtap="chooseOption"
+    >
+      {{index + 1}}. {{item}}
+    </button>
+  </view>
+
+  <view wx:if="{{round.answeredCurrent}}" class="feedback-card">
+    <text class="feedback-title {{isCorrect ? 'correct-text' : 'wrong-text'}}">{{isCorrect ? '回答正确' : '再记一次'}}</text>
+    <text class="example">{{currentWord.example}}</text>
+    <text class="translation">{{currentWord.exampleTranslation}}</text>
+    <button class="primary-button next-button" bindtap="next">下一题</button>
+  </view>
+</view>

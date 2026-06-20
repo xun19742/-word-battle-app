@@ -1,0 +1,14 @@
+<!-- 错词页展示最近错误状态，并可直接生成复习轮次。 -->
+<view class="page">
+  <view wx:if="{{words.length}}">
+    <view class="header-row"><text>共 {{words.length}} 个错词</text><button class="review-button" bindtap="startReview">开始复习</button></view>
+    <view wx:for="{{words}}" wx:key="id" class="word-item">
+      <view><text class="word">{{item.word}}</text><text class="meaning">{{item.meaning}}</text></view>
+      <text class="count">错 {{item.wrongCount}} 次</text>
+    </view>
+  </view>
+  <view wx:else class="empty-state">
+    <text class="empty-title">暂时没有错词</text>
+    <text class="muted">完成一轮学习后，答错的单词会出现在这里。</text>
+  </view>
+</view>

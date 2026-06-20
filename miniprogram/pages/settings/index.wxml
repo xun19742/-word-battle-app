@@ -1,0 +1,32 @@
+<!-- 学习设置允许用户决定默认模式和每轮词数。 -->
+<view class="page">
+  <text class="section-title">默认学习模式</text>
+  <radio-group bindchange="changeMode">
+    <label class="option {{settings.defaultMode === 'flashcard' ? 'option-active' : ''}}">
+      <view>
+        <text class="option-title">单词卡片</text>
+        <text class="option-description">先主动回忆，再翻看释义</text>
+      </view>
+      <radio value="flashcard" checked="{{settings.defaultMode === 'flashcard'}}" color="#5968E8" />
+    </label>
+    <label class="option {{settings.defaultMode === 'quiz' ? 'option-active' : ''}}">
+      <view>
+        <text class="option-title">四选一练习</text>
+        <text class="option-description">快速检测单词掌握情况</text>
+      </view>
+      <radio value="quiz" checked="{{settings.defaultMode === 'quiz'}}" color="#5968E8" />
+    </label>
+  </radio-group>
+
+  <text class="section-title spacing-top">每轮单词数</text>
+  <radio-group class="size-options" bindchange="changeRoundSize">
+    <label class="size-option {{settings.roundSize === 10 ? 'size-active' : ''}}">
+      <text>10 词</text>
+      <radio value="10" checked="{{settings.roundSize === 10}}" color="#5968E8" />
+    </label>
+    <label class="size-option {{settings.roundSize === 20 ? 'size-active' : ''}}">
+      <text>20 词</text>
+      <radio value="20" checked="{{settings.roundSize === 20}}" color="#5968E8" />
+    </label>
+  </radio-group>
+</view>

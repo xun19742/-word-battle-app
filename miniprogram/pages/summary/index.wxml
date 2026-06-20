@@ -1,0 +1,16 @@
+<!-- 总结页展示本轮结果并提供下一步学习入口。 -->
+<view class="page summary-page" wx:if="{{summary}}">
+  <text class="complete-label">本轮完成</text>
+  <text class="score">{{summary.score}}</text>
+  <text class="score-label">本轮得分</text>
+
+  <view class="stats-card">
+    <view class="stat"><text class="stat-value correct">{{summary.correctCount}}</text><text>已掌握</text></view>
+    <view class="stat"><text class="stat-value wrong">{{summary.wrongCount}}</text><text>需复习</text></view>
+    <view class="stat"><text class="stat-value">{{summary.accuracy}}%</text><text>正确率</text></view>
+  </view>
+
+  <button class="primary-button" bindtap="restart">再练一轮</button>
+  <button class="secondary-button" bindtap="reviewWrongWords">复习错词</button>
+  <button class="text-button" bindtap="goHome">返回首页</button>
+</view>
