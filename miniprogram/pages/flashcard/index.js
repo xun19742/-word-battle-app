@@ -5,7 +5,6 @@ const {
 const {
   loadRound,
   saveRound,
-  clearRound,
 } = require('../../utils/round-storage');
 
 Page({
@@ -66,15 +65,8 @@ Page({
   },
 
   finishRound(round) {
-    // 总结页接入前也保证卡片轮次能够完整结束。
-    wx.showModal({
-      title: '本轮完成',
-      content: `答对 ${round.correctCount} 个，需复习 ${round.wrongCount} 个`,
-      showCancel: false,
-      success: () => {
-        clearRound();
-        wx.reLaunch({ url: '/pages/home/index' });
-      },
-    });
+    // 保留活动轮次给总结页做幂等聚合，再由总结页清理。
+    saveRound(round);
+    wx.redirectTo({ url: '/pages/summary/index' });
   },
 });

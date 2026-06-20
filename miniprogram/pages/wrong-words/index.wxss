@@ -1,0 +1,10 @@
+/* 错词列表保持简洁，让用户快速进入复习。 */
+.header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28rpx; }
+.review-button { margin: 0; color: #fff; background: #5968e8; border-radius: 999rpx; font-size: 25rpx; }
+.word-item { display: flex; align-items: center; justify-content: space-between; padding: 28rpx; margin-bottom: 18rpx; background: #fff; border-radius: 22rpx; }
+.word, .meaning { display: block; }
+.word { font-size: 34rpx; font-weight: 700; }
+.meaning { margin-top: 6rpx; color: #718096; font-size: 25rpx; }
+.count { color: #d95656; font-size: 24rpx; }
+.empty-state { display: flex; min-height: 60vh; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.empty-title { margin-bottom: 16rpx; font-size: 36rpx; font-weight: 700; }

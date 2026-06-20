@@ -34,3 +34,10 @@ test('应用注册四选一练习页', () => {
   const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
   assert.equal(app.pages.includes('pages/quiz/index'), true);
 });
+
+test('应用注册总结与错词页', () => {
+  const appPath = path.join(__dirname, '..', 'miniprogram', 'app.json');
+  const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
+  assert.equal(app.pages.includes('pages/summary/index'), true);
+  assert.equal(app.pages.includes('pages/wrong-words/index'), true);
+});

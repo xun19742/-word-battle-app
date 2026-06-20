@@ -3,7 +3,9 @@
     "pages/home/index",
     "pages/settings/index",
     "pages/flashcard/index",
-    "pages/quiz/index"
+    "pages/quiz/index",
+    "pages/summary/index",
+    "pages/wrong-words/index"
   ],
   "window": {
     "navigationBarTitleText": "WordRush",

@@ -6,7 +6,6 @@ const {
 const {
   loadRound,
   saveRound,
-  clearRound,
 } = require('../../utils/round-storage');
 
 Page({
@@ -59,15 +58,8 @@ Page({
   },
 
   finishRound(round) {
-    // 总结页接入前使用弹窗完成闭环，避免跳转到不存在的页面。
-    wx.showModal({
-      title: '本轮完成',
-      content: `答对 ${round.correctCount} 题，答错 ${round.wrongCount} 题`,
-      showCancel: false,
-      success: () => {
-        clearRound();
-        wx.reLaunch({ url: '/pages/home/index' });
-      },
-    });
+    // 总结页统一记录两种模式的学习结果。
+    saveRound(round);
+    wx.redirectTo({ url: '/pages/summary/index' });
   },
 });

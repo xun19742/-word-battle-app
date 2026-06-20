@@ -14,10 +14,10 @@
     <text class="muted">内置 {{wordCount}} 个核心单词</text>
 
     <view class="progress-row">
-      <text>今日目标</text>
-      <text>{{settings.roundSize}} 词</text>
+      <text>今日已学 {{todayCompleted}} 词</text>
+      <text>目标 {{settings.roundSize}} 词</text>
     </view>
-    <view class="progress-track"><view class="progress-value"></view></view>
+    <view class="progress-track"><view class="progress-value" style="width: {{progressPercent}}%;"></view></view>
 
     <view class="mode-row">
       <view class="mode-icon">W</view>
@@ -29,6 +29,7 @@
 
     <button class="primary-button" bindtap="startLearning">开始背词</button>
     <button wx:if="{{activeRound}}" class="resume-button" bindtap="resumeLearning">继续上次学习</button>
+    <button class="wrong-button" bindtap="openWrongWords">复习错词</button>
   </view>
 
   <view class="coming-soon">对战模式 · 后续开放</view>

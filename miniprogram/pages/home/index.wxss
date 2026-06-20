@@ -40,7 +40,8 @@
 .mode-icon { display: flex; align-items: center; justify-content: center; width: 72rpx; height: 72rpx; margin-right: 20rpx; color: #fff; font-weight: 700; background: #5968e8; border-radius: 18rpx; }
 .mode-copy { display: flex; flex-direction: column; }
 .mode-label { margin-bottom: 4rpx; font-weight: 700; }
-.primary-button, .resume-button { margin-top: 20rpx; }
+.primary-button, .resume-button, .wrong-button { margin-top: 20rpx; }
 .resume-button { color: #5968e8; background: #eef0ff; border-radius: 999rpx; }
-.resume-button::after { border: 0; }
+.wrong-button { color: #5968e8; background: transparent; border-radius: 999rpx; }
+.resume-button::after, .wrong-button::after { border: 0; }
 .coming-soon { margin-top: 36rpx; color: #a0aec0; text-align: center; font-size: 25rpx; }
