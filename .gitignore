@@ -2,3 +2,6 @@
 .superpowers/
 .brainstorm-server.log
 .brainstorm-server.err
+
+# Git 隔离工作树目录不进入版本控制
+.worktrees/
