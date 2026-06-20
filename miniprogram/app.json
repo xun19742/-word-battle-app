@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/home/index"
+    "pages/home/index",
+    "pages/settings/index"
   ],
   "window": {
     "navigationBarTitleText": "WordRush",

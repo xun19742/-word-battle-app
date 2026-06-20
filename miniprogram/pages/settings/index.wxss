@@ -1,0 +1,9 @@
+/* 选项卡同时提供文字说明和清晰选中状态。 */
+.section-title { display: block; margin: 20rpx 0; font-size: 30rpx; font-weight: 700; }
+.spacing-top { margin-top: 52rpx; }
+.option, .size-option { display: flex; align-items: center; justify-content: space-between; padding: 30rpx; margin-bottom: 20rpx; background: #fff; border: 3rpx solid transparent; border-radius: 24rpx; }
+.option-active, .size-active { background: #f1f3ff; border-color: #5968e8; }
+.option-title { display: block; font-weight: 700; }
+.option-description { display: block; margin-top: 8rpx; color: #718096; font-size: 25rpx; }
+.size-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20rpx; }
+.size-option { margin: 0; }

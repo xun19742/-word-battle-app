@@ -16,3 +16,9 @@ test('首页是应用的第一个页面', () => {
   const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
   assert.equal(app.pages[0], 'pages/home/index');
 });
+
+test('应用注册学习设置页', () => {
+  const appPath = path.join(__dirname, '..', 'miniprogram', 'app.json');
+  const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
+  assert.equal(app.pages.includes('pages/settings/index'), true);
+});

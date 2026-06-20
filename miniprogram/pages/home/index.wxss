@@ -1,5 +1,46 @@
-/* 首页标题建立 MVP 的第一层视觉层级。 */
+/* 首页用明确层级突出词书与开始学习动作。 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24rpx 0 40rpx;
+}
+
 .title {
+  display: block;
   font-size: 52rpx;
   font-weight: 700;
 }
+
+.subtitle {
+  display: block;
+  margin-top: 8rpx;
+  color: #718096;
+  font-size: 26rpx;
+}
+
+.settings-button {
+  width: 80rpx;
+  height: 80rpx;
+  padding: 0;
+  color: #5968e8;
+  background: #fff;
+  border-radius: 50%;
+  line-height: 80rpx;
+}
+
+.settings-button::after { border: 0; }
+.hero-card { padding: 40rpx; }
+.eyebrow { display: block; color: #718096; font-size: 24rpx; }
+.book-name { display: block; margin: 12rpx 0 6rpx; font-size: 42rpx; font-weight: 700; }
+.progress-row { display: flex; justify-content: space-between; margin-top: 44rpx; font-size: 26rpx; }
+.progress-track { height: 14rpx; margin: 16rpx 0 36rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
+.progress-value { width: 0; height: 100%; background: #5968e8; }
+.mode-row { display: flex; align-items: center; padding: 24rpx; margin-bottom: 32rpx; background: #f6f8ff; border-radius: 20rpx; }
+.mode-icon { display: flex; align-items: center; justify-content: center; width: 72rpx; height: 72rpx; margin-right: 20rpx; color: #fff; font-weight: 700; background: #5968e8; border-radius: 18rpx; }
+.mode-copy { display: flex; flex-direction: column; }
+.mode-label { margin-bottom: 4rpx; font-weight: 700; }
+.primary-button, .resume-button { margin-top: 20rpx; }
+.resume-button { color: #5968e8; background: #eef0ff; border-radius: 999rpx; }
+.resume-button::after { border: 0; }
+.coming-soon { margin-top: 36rpx; color: #a0aec0; text-align: center; font-size: 25rpx; }

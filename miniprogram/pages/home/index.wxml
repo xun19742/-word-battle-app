@@ -1,6 +1,35 @@
-<!-- 首页最小可运行内容，后续任务再加入词书与学习入口。 -->
+<!-- 首页展示当前词书、学习模式和一键开始入口。 -->
 <view class="page">
-  <view class="card">
-    <text class="title">{{title}}</text>
+  <view class="header">
+    <view>
+      <text class="title">WordRush</text>
+      <text class="subtitle">今天也来认识新单词吧</text>
+    </view>
+    <button class="settings-button" bindtap="openSettings" aria-label="打开设置">⚙</button>
   </view>
+
+  <view class="card hero-card">
+    <text class="eyebrow">当前词书</text>
+    <text class="book-name">{{bookName}}</text>
+    <text class="muted">内置 {{wordCount}} 个核心单词</text>
+
+    <view class="progress-row">
+      <text>今日目标</text>
+      <text>{{settings.roundSize}} 词</text>
+    </view>
+    <view class="progress-track"><view class="progress-value"></view></view>
+
+    <view class="mode-row">
+      <view class="mode-icon">W</view>
+      <view class="mode-copy">
+        <text class="mode-label">{{modeLabel}}</text>
+        <text class="muted">可在设置中切换默认模式</text>
+      </view>
+    </view>
+
+    <button class="primary-button" bindtap="startLearning">开始背词</button>
+    <button wx:if="{{activeRound}}" class="resume-button" bindtap="resumeLearning">继续上次学习</button>
+  </view>
+
+  <view class="coming-soon">对战模式 · 后续开放</view>
 </view>
