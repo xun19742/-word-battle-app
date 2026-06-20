@@ -41,3 +41,9 @@ test('应用注册总结与错词页', () => {
   assert.equal(app.pages.includes('pages/summary/index'), true);
   assert.equal(app.pages.includes('pages/wrong-words/index'), true);
 });
+
+test('首页展示云端状态提示区域', () => {
+  const homePath = path.join(__dirname, '..', 'miniprogram', 'pages', 'home', 'index.wxml');
+  const home = fs.readFileSync(homePath, 'utf8');
+  assert.match(home, /cloudMessage/);
+});

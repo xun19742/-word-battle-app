@@ -8,6 +8,10 @@
     <button class="settings-button" bindtap="openSettings" aria-label="打开设置">⚙</button>
   </view>
 
+  <view wx:if="{{cloudMessage || syncPending}}" class="cloud-banner">
+    <text>{{cloudMessage || '有学习记录等待同步，联网后会自动重试'}}</text>
+  </view>
+
   <view class="card hero-card">
     <text class="eyebrow">当前词书</text>
     <text class="book-name">{{bookName}}</text>
