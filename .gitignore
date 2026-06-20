@@ -1,0 +1,4 @@
+# 本地交互原型与运行日志不提交到业务仓库
+.superpowers/
+.brainstorm-server.log
+.brainstorm-server.err
