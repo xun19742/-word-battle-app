@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/index",
     "pages/settings/index",
-    "pages/flashcard/index"
+    "pages/flashcard/index",
+    "pages/quiz/index"
   ],
   "window": {
     "navigationBarTitleText": "WordRush",

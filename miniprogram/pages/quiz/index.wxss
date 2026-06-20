@@ -1,0 +1,20 @@
+/* 选项用边框和背景同时表达状态，避免只依赖颜色。 */
+.progress-header { display: flex; justify-content: space-between; color: #718096; font-size: 25rpx; }
+.progress-track { height: 12rpx; margin: 18rpx 0 36rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
+.progress-value { height: 100%; background: #5968e8; border-radius: 999rpx; }
+.question-card { display: flex; padding: 52rpx 32rpx; flex-direction: column; align-items: center; background: #fff; border-radius: 30rpx; }
+.word { font-size: 60rpx; font-weight: 750; }
+.phonetic { margin-top: 10rpx; color: #718096; }
+.options { display: grid; gap: 20rpx; margin-top: 32rpx; }
+.option { padding: 26rpx 30rpx; color: #24305e; background: #fff; border: 3rpx solid #e1e6f4; border-radius: 20rpx; text-align: left; line-height: 1.4; }
+.option::after { border: 0; }
+.option-correct { color: #137a50; background: #ecfdf5; border-color: #22a06b; }
+.option-wrong { color: #b93838; background: #fff1f1; border-color: #d95656; }
+.feedback-card { padding: 28rpx; margin-top: 28rpx; background: #fff; border-radius: 24rpx; }
+.feedback-title, .example, .translation { display: block; }
+.feedback-title { font-size: 32rpx; font-weight: 700; }
+.correct-text { color: #16845b; }
+.wrong-text { color: #d95656; }
+.example { margin-top: 20rpx; color: #4a5568; }
+.translation { margin-top: 8rpx; color: #718096; font-size: 25rpx; }
+.next-button { margin-top: 24rpx; }

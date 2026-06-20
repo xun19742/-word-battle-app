@@ -28,3 +28,9 @@ test('应用注册单词卡片页', () => {
   const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
   assert.equal(app.pages.includes('pages/flashcard/index'), true);
 });
+
+test('应用注册四选一练习页', () => {
+  const appPath = path.join(__dirname, '..', 'miniprogram', 'app.json');
+  const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
+  assert.equal(app.pages.includes('pages/quiz/index'), true);
+});
