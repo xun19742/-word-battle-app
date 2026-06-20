@@ -1,5 +1,9 @@
 const { login, syncLearning } = require('./services/cloud-api');
 const { createWxQueue } = require('./services/sync-queue');
+const {
+  loadSettings,
+  saveSettings,
+} = require('./services/settings-service');
 
 App({
   globalData: {
@@ -24,9 +28,12 @@ App({
 
   async initializeCloud() {
     try {
-      const session = await login();
+      const session = await login(loadSettings());
       this.globalData.cloudAvailable = session.cloudAvailable;
       this.globalData.openid = session.openid;
+      if (session.settings) {
+        saveSettings(session.settings);
+      }
       this.globalData.cloudMessage = session.cloudAvailable
         ? ''
         : '当前为本地体验模式，学习记录尚未同步云端';

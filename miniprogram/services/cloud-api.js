@@ -1,12 +1,31 @@
-async function login() {
+async function login(localSettings) {
   if (!wx.cloud) {
     return { cloudAvailable: false, openid: '' };
   }
-  const response = await wx.cloud.callFunction({ name: 'login' });
+  const options = { name: 'login' };
+  if (localSettings) {
+    options.data = { settings: localSettings };
+  }
+  const response = await wx.cloud.callFunction(options);
   return {
     cloudAvailable: true,
     openid: response.result.openid,
+    settings: response.result.settings,
   };
+}
+
+async function saveSettingsToCloud(settings) {
+  if (!wx.cloud) {
+    return false;
+  }
+  const response = await wx.cloud.callFunction({
+    name: 'login',
+    data: {
+      action: 'saveSettings',
+      settings,
+    },
+  });
+  return Boolean(response.result && response.result.success);
 }
 
 async function syncLearning(summary) {
@@ -23,4 +42,5 @@ async function syncLearning(summary) {
 module.exports = {
   login,
   syncLearning,
+  saveSettingsToCloud,
 };

@@ -4,9 +4,14 @@ const assert = require('node:assert/strict');
 
 test('没有云能力时登录和同步安全降级', async () => {
   global.wx = {};
-  const { login, syncLearning } = require('../miniprogram/services/cloud-api');
+  const {
+    login,
+    syncLearning,
+    saveSettingsToCloud,
+  } = require('../miniprogram/services/cloud-api');
   assert.deepEqual(await login(), { cloudAvailable: false, openid: '' });
   assert.equal(await syncLearning({ roundId: 'r1' }), false);
+  assert.equal(await saveSettingsToCloud({ defaultMode: 'quiz', roundSize: 20 }), false);
   delete global.wx;
 });
 
@@ -16,14 +21,31 @@ test('云能力可用时调用对应云函数', async () => {
     cloud: {
       callFunction: async (options) => {
         calls.push(options);
-        if (options.name === 'login') return { result: { openid: 'openid-1' } };
+        if (options.name === 'login' && !options.data) {
+          return {
+            result: {
+              openid: 'openid-1',
+              settings: { defaultMode: 'quiz', roundSize: 20 },
+            },
+          };
+        }
         return { result: { success: true } };
       },
     },
   };
-  const { login, syncLearning } = require('../miniprogram/services/cloud-api');
-  assert.deepEqual(await login(), { cloudAvailable: true, openid: 'openid-1' });
+  const {
+    login,
+    syncLearning,
+    saveSettingsToCloud,
+  } = require('../miniprogram/services/cloud-api');
+  assert.deepEqual(await login(), {
+    cloudAvailable: true,
+    openid: 'openid-1',
+    settings: { defaultMode: 'quiz', roundSize: 20 },
+  });
   assert.equal(await syncLearning({ roundId: 'r1' }), true);
-  assert.deepEqual(calls.map((item) => item.name), ['login', 'sync-learning']);
+  assert.equal(await saveSettingsToCloud({ defaultMode: 'quiz', roundSize: 20 }), true);
+  assert.deepEqual(calls.map((item) => item.name), ['login', 'sync-learning', 'login']);
+  assert.equal(calls[2].data.action, 'saveSettings');
   delete global.wx;
 });
