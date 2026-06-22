@@ -1,5 +1,5 @@
-<!-- 卡片页先鼓励主动回忆，再显示释义和掌握判断。 -->
-<view class="page" wx:if="{{round}}">
+<!-- 背词页通过整页点击显示词义，并让答题按钮阻止事件冒泡。 -->
+<view class="page flashcard-page" wx:if="{{round}}" bindtap="revealCard">
   <view class="progress-header">
     <text>第 {{round.currentIndex + 1}} / {{round.size}} 词</text>
     <text>已掌握 {{round.correctCount}}</text>
@@ -17,18 +17,19 @@
       <text class="example">{{currentWord.example}}</text>
       <text class="translation">{{currentWord.exampleTranslation}}</text>
     </view>
-    <text wx:else class="recall-tip">先在心里回忆它的含义</text>
+    <view wx:else class="recall-block">
+      <text class="recall-tip">点击屏幕查看词义</text>
+      <text class="recall-subtitle">先在心里回忆它的含义</text>
+    </view>
   </view>
 
-  <button wx:if="{{!revealed}}" class="primary-button action-button" bindtap="revealCard">查看释义</button>
-
-  <view wx:elif="{{!round.answeredCurrent}}" class="answer-actions">
-    <button class="unknown-button" bindtap="markUnknown">不认识</button>
-    <button class="known-button" bindtap="markKnown">认识</button>
+  <view wx:if="{{revealed && !round.answeredCurrent}}" class="answer-actions">
+    <button class="unknown-button" catchtap="markUnknown">不认识</button>
+    <button class="known-button" catchtap="markKnown">认识</button>
   </view>
 
-  <view wx:else class="feedback">
+  <view wx:elif="{{revealed && round.answeredCurrent}}" class="feedback">
     <text>{{resultLabel}}</text>
-    <button class="primary-button next-button" bindtap="next">下一词</button>
+    <button class="next-button" catchtap="next">下一词</button>
   </view>
 </view>

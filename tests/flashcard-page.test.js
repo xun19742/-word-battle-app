@@ -55,3 +55,22 @@ test('无效或已完成的回忆状态不会重复显示词义', () => {
     assert.equal(updateCount, 0);
   });
 });
+
+test('页面主体点击显示词义并隔离答题按钮事件', () => {
+  const wxmlPath = path.join(
+    __dirname,
+    '..',
+    'miniprogram',
+    'pages',
+    'flashcard',
+    'index.wxml',
+  );
+  const wxml = fs.readFileSync(wxmlPath, 'utf8');
+
+  assert.match(wxml, /class="page flashcard-page"[^>]*bindtap="revealCard"/);
+  assert.match(wxml, /点击屏幕查看词义/);
+  assert.doesNotMatch(wxml, />查看释义<\/button>/);
+  assert.match(wxml, /catchtap="markUnknown"/);
+  assert.match(wxml, /catchtap="markKnown"/);
+  assert.match(wxml, /catchtap="next"/);
+});
