@@ -1,19 +1,166 @@
-/* 大卡片保持单一视觉焦点，降低背词过程中的干扰。 */
-.progress-header { display: flex; justify-content: space-between; color: #718096; font-size: 25rpx; }
-.progress-track { height: 12rpx; margin: 18rpx 0 48rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
-.progress-value { height: 100%; background: #5968e8; border-radius: 999rpx; }
-.word-card { display: flex; min-height: 640rpx; padding: 48rpx; box-sizing: border-box; flex-direction: column; align-items: center; justify-content: center; background: #fff; border-radius: 36rpx; box-shadow: 0 18rpx 60rpx rgba(72, 88, 160, 0.14); }
-.word-card-revealed { justify-content: flex-start; padding-top: 96rpx; }
-.word { font-size: 68rpx; font-weight: 750; }
-.phonetic { margin-top: 12rpx; color: #718096; }
-.recall-tip { margin-top: 64rpx; color: #5968e8; font-size: 26rpx; }
-.meaning-block { display: flex; width: 100%; margin-top: 64rpx; flex-direction: column; text-align: left; }
-.meaning { font-size: 34rpx; font-weight: 700; }
-.example { margin-top: 36rpx; color: #4a5568; line-height: 1.6; }
-.translation { margin-top: 12rpx; color: #718096; font-size: 26rpx; }
-.action-button, .next-button { margin-top: 36rpx; }
-.answer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 24rpx; margin-top: 36rpx; }
-.unknown-button { color: #d95656; background: #fff1f1; border-radius: 999rpx; }
-.known-button { color: #16845b; background: #ecfdf5; border-radius: 999rpx; }
-.unknown-button::after, .known-button::after { border: 0; }
-.feedback { margin-top: 32rpx; color: #5968e8; text-align: center; font-weight: 700; }
+/* 背词页使用独立深色主题，其他页面继续沿用全局浅色设计。 */
+page {
+  color: #f4f6ff;
+  background: #171d3c;
+}
+
+.flashcard-page {
+  display: flex;
+  min-height: 100vh;
+  padding-bottom: 48rpx;
+  flex-direction: column;
+  background: linear-gradient(160deg, #171d3c, #343b77);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  color: #c7cdef;
+  font-size: 25rpx;
+}
+
+.progress-track {
+  height: 12rpx;
+  margin: 18rpx 0 40rpx;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999rpx;
+}
+
+.progress-value {
+  height: 100%;
+  background: #a9f0d1;
+  border-radius: 999rpx;
+}
+
+.word-card {
+  display: flex;
+  min-height: 650rpx;
+  padding: 56rpx 48rpx;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2rpx solid rgba(255, 255, 255, 0.18);
+  border-radius: 36rpx;
+  box-shadow: 0 24rpx 70rpx rgba(7, 11, 35, 0.28);
+}
+
+.word-card-revealed {
+  justify-content: flex-start;
+  padding-top: 76rpx;
+}
+
+.word {
+  color: #ffffff;
+  font-size: 72rpx;
+  font-weight: 750;
+  letter-spacing: 1rpx;
+}
+
+.phonetic {
+  margin-top: 14rpx;
+  color: #c7cdef;
+}
+
+.recall-block {
+  display: flex;
+  margin-top: 72rpx;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recall-tip {
+  color: #a9f0d1;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.recall-subtitle {
+  margin-top: 14rpx;
+  color: #aeb7db;
+  font-size: 24rpx;
+}
+
+.meaning-block {
+  display: flex;
+  width: 100%;
+  margin-top: 60rpx;
+  flex-direction: column;
+  text-align: left;
+  animation: meaning-fade-in 200ms ease-out;
+}
+
+.meaning {
+  color: #ffffff;
+  font-size: 35rpx;
+  font-weight: 700;
+}
+
+.example {
+  margin-top: 38rpx;
+  color: #eef1ff;
+  line-height: 1.65;
+}
+
+.translation {
+  margin-top: 14rpx;
+  color: #b9c1e3;
+  font-size: 26rpx;
+  line-height: 1.55;
+}
+
+.answer-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24rpx;
+  margin-top: 34rpx;
+}
+
+.unknown-button,
+.known-button,
+.next-button {
+  border-radius: 999rpx;
+  font-weight: 700;
+}
+
+.unknown-button {
+  color: #ffd7dc;
+  background: rgba(217, 86, 86, 0.22);
+  border: 2rpx solid rgba(255, 174, 185, 0.42);
+}
+
+.known-button,
+.next-button {
+  color: #1c2942;
+  background: #a9f0d1;
+}
+
+.unknown-button::after,
+.known-button::after,
+.next-button::after {
+  border: 0;
+}
+
+.feedback {
+  margin-top: 30rpx;
+  color: #a9f0d1;
+  text-align: center;
+  font-weight: 700;
+}
+
+.next-button {
+  margin-top: 22rpx;
+}
+
+@keyframes meaning-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

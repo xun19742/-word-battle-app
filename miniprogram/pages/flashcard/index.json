@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "单词卡片"
+  "navigationBarTitleText": "单词卡片",
+  "navigationBarBackgroundColor": "#171D3C",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#171D3C"
 }
