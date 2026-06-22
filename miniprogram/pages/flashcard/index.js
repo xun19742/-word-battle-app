@@ -33,6 +33,15 @@ Page({
   },
 
   revealCard() {
+    const {
+      round,
+      currentWord,
+      revealed,
+    } = this.data;
+    // 只允许有效且尚未作答的当前词进入释义状态。
+    if (!round || !currentWord || revealed || round.answeredCurrent) {
+      return;
+    }
     this.setData({ revealed: true });
   },
 
