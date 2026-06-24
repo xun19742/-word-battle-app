@@ -130,6 +130,10 @@ Page({
     wx.navigateTo({ url: '/pages/settings/index' });
   },
 
+  openProfile() {
+    wx.navigateTo({ url: '/pages/profile/index' });
+  },
+
   openWordbooks() {
     wx.navigateTo({ url: '/pages/wordbooks/index' });
   },

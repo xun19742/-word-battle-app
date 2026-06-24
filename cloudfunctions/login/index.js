@@ -1,6 +1,8 @@
 const cloud = require('wx-server-sdk');
 const {
   createDefaultUser,
+  getPublicUserProfile,
+  normalizeProfileInput,
   validateCloudSettings,
 } = require('./user-rules');
 
@@ -45,6 +47,31 @@ exports.main = async (event = {}) => {
     return { success: true, settings };
   }
 
+  if (event.action === 'saveProfile') {
+    const profile = normalizeProfileInput(event.profile);
+    if (user) {
+      await users.doc(OPENID).update({
+        data: { ...profile, updatedAt: db.serverDate() },
+      });
+      user = { ...user, ...profile };
+    } else {
+      user = createDefaultUser(OPENID);
+      await users.doc(OPENID).set({
+        data: {
+          ...user,
+          ...profile,
+          createdAt: db.serverDate(),
+          updatedAt: db.serverDate(),
+        },
+      });
+      user = { ...user, ...profile };
+    }
+    return {
+      success: true,
+      profile: getPublicUserProfile(user),
+    };
+  }
+
   if (!user) {
     const initialSettings = event.settings
       ? validateCloudSettings(event.settings)
@@ -62,5 +89,6 @@ exports.main = async (event = {}) => {
   return {
     openid: OPENID,
     settings: getUserSettings(user),
+    profile: getPublicUserProfile(user),
   };
 };

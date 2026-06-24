@@ -1,4 +1,4 @@
-// 首页结构测试保证多词书和双学习计划入口不会被遗漏。
+// 首页结构测试保证多词书、双计划入口和资料入口不被遗漏。
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -47,4 +47,12 @@ test('首页双计划卡片在窄屏中不会横向溢出', () => {
   assert.match(wxss, /\.plan-button\s*\{[^}]*min-width:\s*0/);
   assert.match(wxss, /\.plan-button\s*\{[^}]*max-width:\s*100%/);
   assert.match(wxss, /\.plan-button\s*\{[^}]*margin:\s*0/);
+});
+
+test('首页提供我的资料入口', () => {
+  const js = readPage('home', 'js');
+  const wxml = readPage('home', 'wxml');
+  assert.match(js, /openProfile\(\)/);
+  assert.match(wxml, /bindtap="openProfile"/);
+  assert.match(wxml, />我的</);
 });

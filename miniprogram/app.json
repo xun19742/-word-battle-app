@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/profile/index",
     "pages/settings/index",
     "pages/wordbooks/index",
     "pages/flashcard/index",

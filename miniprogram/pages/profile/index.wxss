@@ -1,0 +1,12 @@
+/* 我的资料页保留轻量布局，突出头像昵称授权和基础战绩。 */
+.profile-card, .stats-card { padding: 34rpx; background: #fff; border-radius: 28rpx; box-shadow: 0 12rpx 36rpx rgba(72, 88, 160, 0.1); }
+.profile-card { display: flex; flex-direction: column; align-items: center; }
+.avatar-button { display: flex; align-items: center; justify-content: center; width: 150rpx; height: 150rpx; padding: 0; margin: 0 0 24rpx; overflow: hidden; background: #eef0ff; border-radius: 50%; }
+.avatar-button::after { border: 0; }
+.avatar { width: 150rpx; height: 150rpx; border-radius: 50%; }
+.avatar-placeholder { color: #5968e8; font-size: 64rpx; font-weight: 700; }
+.nickname-input { box-sizing: border-box; width: 100%; padding: 22rpx 24rpx; text-align: center; background: #f6f8ff; border-radius: 20rpx; font-weight: 700; }
+.save-button { width: 100%; margin-top: 24rpx; line-height: 84rpx; }
+.stats-card { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20rpx; margin-top: 24rpx; text-align: center; }
+.stat-value { display: block; color: #202853; font-size: 34rpx; font-weight: 700; }
+.stat-label { display: block; margin-top: 8rpx; color: #718096; font-size: 24rpx; }
