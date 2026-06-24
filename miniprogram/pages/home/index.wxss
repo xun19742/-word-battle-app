@@ -34,7 +34,7 @@
 .progress-track { height: 11rpx; margin: 18rpx 0 24rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
 .progress-value { height: 100%; background: #5968e8; border-radius: 999rpx; }
 .review-value { background: #26a77b; }
-.plan-button { box-sizing: border-box; width: 100%; padding: 0 8rpx; font-size: 25rpx; line-height: 72rpx; }
+.plan-button { display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; height: 72rpx; margin: 0; padding: 0 8rpx; font-size: 25rpx; line-height: 72rpx; white-space: nowrap; }
 .review-button { color: #176c52; background: #e5f8f1; border-radius: 999rpx; }
 .review-button::after { border: 0; }
 

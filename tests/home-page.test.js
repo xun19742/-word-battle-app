@@ -42,5 +42,9 @@ test('首页双计划卡片在窄屏中不会横向溢出', () => {
   assert.match(wxss, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(wxss, /\.plan-card\s*\{[^}]*box-sizing:\s*border-box/);
   assert.match(wxss, /\.plan-card\s*\{[^}]*min-width:\s*0/);
+  assert.match(wxss, /\.plan-button\s*\{[^}]*display:\s*flex/);
   assert.match(wxss, /\.plan-button\s*\{[^}]*width:\s*100%/);
+  assert.match(wxss, /\.plan-button\s*\{[^}]*min-width:\s*0/);
+  assert.match(wxss, /\.plan-button\s*\{[^}]*max-width:\s*100%/);
+  assert.match(wxss, /\.plan-button\s*\{[^}]*margin:\s*0/);
 });
