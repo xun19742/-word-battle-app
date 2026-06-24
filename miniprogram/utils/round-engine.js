@@ -7,12 +7,12 @@ function shuffle(items, random = Math.random) {
   return result;
 }
 
-function createRound(words, size, mode, random = Math.random) {
+function createRound(words, size, mode, random = Math.random, context = {}) {
   if (!['flashcard', 'quiz'].includes(mode)) {
     throw new Error('学习模式无效');
   }
-  // 普通设置使用 10/20，错词复习允许按实际数量创建较短轮次。
-  if (!Number.isInteger(size) || size < 1 || size > 20) {
+  // 每日目标可以很大，但单轮最多 10 词，保持学习节奏轻量。
+  if (!Number.isInteger(size) || size < 1 || size > 10) {
     throw new Error('每轮单词数无效');
   }
   if (words.length < size) {
@@ -22,6 +22,10 @@ function createRound(words, size, mode, random = Math.random) {
   return {
     roundId: `round-${Date.now()}-${Math.floor(random() * 1000000)}`,
     mode,
+    wordbookId: context.wordbookId || 'cet4-core-100',
+    studyType: ['new', 'review'].includes(context.studyType)
+      ? context.studyType
+      : 'new',
     size,
     currentIndex: 0,
     correctCount: 0,
@@ -92,6 +96,10 @@ function getSummary(round) {
   return {
     roundId: round.roundId,
     mode: round.mode,
+    wordbookId: round.wordbookId || 'cet4-core-100',
+    studyType: ['new', 'review'].includes(round.studyType)
+      ? round.studyType
+      : 'new',
     total: round.size,
     correctCount: round.correctCount,
     wrongCount: round.wrongCount,

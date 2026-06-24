@@ -1,52 +1,95 @@
-const wordbook = require('../data/cet4-core-100');
+const legacyBook = require('../data/cet4-core-100');
+const generated = require('../data/exam-wordbooks.generated');
 
-const REQUIRED_FIELDS = [
-  'id',
-  'word',
-  'phonetic',
-  'meaning',
-  'example',
-  'exampleTranslation',
-  'difficulty',
-  'order',
-];
+const REQUIRED_FIELDS = ['id', 'word', 'meaning', 'order'];
 
-function getBuiltinWordbook() {
-  // 返回深一层副本，避免页面状态修改污染内置词书。
+function expandBook(book) {
   return {
-    ...wordbook,
-    words: wordbook.words.map((item) => ({ ...item })),
+    id: book.id,
+    name: book.name,
+    description: book.description,
+    source: generated.source.name,
+    words: book.indexes.map((entryIndex, order) => {
+      const [word, phonetic, meaning] = generated.entries[entryIndex];
+      return {
+        id: `ecdict-${entryIndex}`,
+        word,
+        phonetic,
+        meaning,
+        example: '',
+        exampleTranslation: '',
+        difficulty: 1,
+        order: order + 1,
+      };
+    }),
   };
 }
 
+function listWordbooks() {
+  return [
+    ...generated.books.map((book) => ({
+      id: book.id,
+      name: book.name,
+      description: book.description,
+      wordCount: book.indexes.length,
+      source: generated.source.name,
+    })),
+    {
+      id: legacyBook.id,
+      name: legacyBook.name,
+      description: legacyBook.description,
+      wordCount: legacyBook.words.length,
+      source: 'WordRush',
+    },
+  ];
+}
+
+function isValidWordbookId(bookId) {
+  return listWordbooks().some((book) => book.id === bookId);
+}
+
+function getWordbook(bookId = 'cet4') {
+  if (bookId === legacyBook.id) {
+    return {
+      ...legacyBook,
+      words: legacyBook.words.map((word) => ({ ...word })),
+    };
+  }
+  const book = generated.books.find((item) => item.id === bookId)
+    || generated.books.find((item) => item.id === 'cet4');
+  return expandBook(book);
+}
+
+function getBuiltinWordbook() {
+  // 兼容尚未迁移的旧页面和云端种子脚本。
+  return getWordbook('cet4-core-100');
+}
+
 function validateWordbook(book) {
-  const errors = [];
-  if (!book || !Array.isArray(book.words)) {
+  if (!book || !Array.isArray(book.words) || !book.words.length) {
     return ['词书格式错误'];
   }
 
-  if (book.words.length !== 100) {
-    errors.push('词书必须包含 100 个单词');
-  }
-
+  const errors = [];
   const seen = new Set();
-  book.words.forEach((item, index) => {
+  book.words.forEach((word, index) => {
     REQUIRED_FIELDS.forEach((field) => {
-      if (item[field] === undefined || item[field] === '') {
+      if (word[field] === undefined || word[field] === '') {
         errors.push(`第 ${index + 1} 个单词缺少 ${field}`);
       }
     });
-
-    if (seen.has(item.word)) {
-      errors.push(`单词重复：${item.word}`);
+    if (seen.has(word.word)) {
+      errors.push(`单词重复：${word.word}`);
     }
-    seen.add(item.word);
+    seen.add(word.word);
   });
-
   return errors;
 }
 
 module.exports = {
   getBuiltinWordbook,
+  getWordbook,
+  isValidWordbookId,
+  listWordbooks,
   validateWordbook,
 };

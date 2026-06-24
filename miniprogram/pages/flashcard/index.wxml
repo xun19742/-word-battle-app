@@ -14,8 +14,10 @@
 
     <view wx:if="{{revealed}}" class="meaning-block">
       <text class="meaning">{{currentWord.meaning}}</text>
-      <text class="example">{{currentWord.example}}</text>
-      <text class="translation">{{currentWord.exampleTranslation}}</text>
+      <view wx:if="{{currentWord.example}}" class="example-block">
+        <text class="example">{{currentWord.example}}</text>
+        <text wx:if="{{currentWord.exampleTranslation}}" class="translation">{{currentWord.exampleTranslation}}</text>
+      </view>
     </view>
     <view wx:else class="recall-block">
       <text class="recall-tip">点击屏幕查看词义</text>

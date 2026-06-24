@@ -6,22 +6,28 @@
 
 **Architecture:** 构建脚本从固定版本 ECDICT CSV 生成一份去重共享词条表和四份索引，运行时由词书服务还原单本词书。设置服务、学习计划服务和学习仓库分别负责参数标准化、下一轮选词和按词书隔离进度；页面只展示状态并调用这些服务。
 
-**Tech Stack:** 原生微信小程序、Node.js、`node:test`、`csv-parse@7.0.0`、微信云开发
+**Tech Stack:** 原生微信小程序、Node.js、`node:test`、项目内流式 CSV 解析器、微信云开发
 
 ---
 
+## 执行修订
+
+Windows 隔离环境无法读取由提权包管理器创建的依赖文件，因此执行时移除了 `csv-parse`。Task 1 改为先用 `tests/csv-parser.test.js` 驱动 `scripts/csv-parser.js`，覆盖引号逗号、双引号和字段内换行；`tests/wordbook-builder.test.js` 使用 `parseCsvText` 读取固定样例。`build-exam-wordbooks.js` 使用 `createCsvParser` 流式处理 UTF-8 CSV，不在内存保存完整 66 MB 数据文件。此修订不改变生成数据格式、ECDICT 固定版本或后续任务接口。
+
 ## 文件结构
 
+- Create: `scripts/csv-parser.js`：零依赖流式解析 ECDICT CSV。
 - Create: `scripts/wordbook-builder.js`：纯函数清洗、去重、排序和验证 ECDICT 行。
 - Create: `scripts/build-exam-wordbooks.js`：流式读取 CSV 并写出紧凑词书数据。
 - Create: `tests/fixtures/ecdict-sample.csv`：生成器固定测试样例。
+- Create: `tests/csv-parser.test.js`：验证 CSV 引号、逗号和字段内换行。
 - Create: `tests/wordbook-builder.test.js`：验证标签、去重、稳定排序和大小门槛。
 - Create: `miniprogram/data/exam-wordbooks.generated.js`：机械生成的四本完整词书数据。
 - Create: `THIRD_PARTY_NOTICES.md`：ECDICT 来源和 MIT 许可声明。
 - Create: `miniprogram/services/study-plan-service.js`：选择新词或复习词并限制每轮 10 词。
 - Create: `tests/study-plan-service.test.js`：验证目标余量和复习优先级。
 - Create: `miniprogram/pages/wordbooks/index.js|json|wxml|wxss`：词书选择页。
-- Modify: `package.json`、`pnpm-lock.yaml`：增加构建依赖和命令。
+- Modify: `package.json`：增加词书构建命令。
 - Modify: `miniprogram/services/wordbook-service.js`：多词书清单、读取与兼容验证。
 - Modify: `miniprogram/services/settings-service.js`：新设置结构与旧设置迁移。
 - Modify: `miniprogram/services/learning-repository.js`：按词书隔离记录并区分新词/复习。

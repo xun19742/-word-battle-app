@@ -5,3 +5,6 @@
 
 # Git 隔离工作树目录不进入版本控制
 .worktrees/
+
+# Node 构建依赖目录不进入版本控制
+node_modules/

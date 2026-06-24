@@ -7,6 +7,18 @@ const {
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database();
 
+function getUserSettings(user) {
+  // 老用户缺字段时按 MVP 默认值补齐，避免登录后设置页出现空值。
+  return {
+    defaultMode: ['flashcard', 'quiz'].includes(user.defaultMode)
+      ? user.defaultMode
+      : 'flashcard',
+    selectedWordbookId: user.selectedWordbookId || 'cet4',
+    dailyNewWords: Number.isInteger(user.dailyNewWords) ? user.dailyNewWords : 25,
+    reviewRatio: [1, 2, 3].includes(user.reviewRatio) ? user.reviewRatio : 2,
+  };
+}
+
 exports.main = async (event = {}) => {
   // OpenID 只从可信云上下文读取，不接受客户端自报身份。
   const { OPENID } = cloud.getWXContext();
@@ -49,9 +61,6 @@ exports.main = async (event = {}) => {
 
   return {
     openid: OPENID,
-    settings: {
-      defaultMode: user.defaultMode,
-      roundSize: user.roundSize,
-    },
+    settings: getUserSettings(user),
   };
 };

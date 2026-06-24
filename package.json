@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "test": "node --test",
-    "prepare:cloud": "node scripts/prepare-cloud-wordbook.js"
+    "prepare:cloud": "node scripts/prepare-cloud-wordbook.js",
+    "build:wordbooks": "node scripts/build-exam-wordbooks.js"
   }
 }

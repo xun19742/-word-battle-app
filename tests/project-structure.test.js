@@ -42,6 +42,12 @@ test('应用注册总结与错词页', () => {
   assert.equal(app.pages.includes('pages/wrong-words/index'), true);
 });
 
+test('应用注册词书选择页', () => {
+  const appPath = path.join(__dirname, '..', 'miniprogram', 'app.json');
+  const app = JSON.parse(fs.readFileSync(appPath, 'utf8'));
+  assert.equal(app.pages.includes('pages/wordbooks/index'), true);
+});
+
 test('首页展示云端状态提示区域', () => {
   const homePath = path.join(__dirname, '..', 'miniprogram', 'pages', 'home', 'index.wxml');
   const home = fs.readFileSync(homePath, 'utf8');

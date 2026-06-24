@@ -27,8 +27,10 @@
 
   <view wx:if="{{round.answeredCurrent}}" class="feedback-card">
     <text class="feedback-title {{isCorrect ? 'correct-text' : 'wrong-text'}}">{{isCorrect ? '回答正确' : '再记一次'}}</text>
-    <text class="example">{{currentWord.example}}</text>
-    <text class="translation">{{currentWord.exampleTranslation}}</text>
+    <view wx:if="{{currentWord.example}}" class="example-block">
+      <text class="example">{{currentWord.example}}</text>
+      <text wx:if="{{currentWord.exampleTranslation}}" class="translation">{{currentWord.exampleTranslation}}</text>
+    </view>
     <button class="primary-button next-button" bindtap="next">下一题</button>
   </view>
 </view>

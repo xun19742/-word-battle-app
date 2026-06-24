@@ -1,3 +1,11 @@
+const WORDBOOK_IDS = [
+  'cet4',
+  'cet6',
+  'postgraduate',
+  'ielts',
+  'cet4-core-100',
+];
+
 function mergeLearningRecord(current = {}, answer) {
   return {
     correctCount: (current.correctCount || 0) + (answer.isCorrect ? 1 : 0),
@@ -21,15 +29,39 @@ function validateSummary(summary) {
   if (!Array.isArray(summary.answers) || summary.answers.length !== summary.total) {
     throw new Error('answers 数量必须与 total 一致');
   }
-  summary.answers.forEach((answer) => {
+
+  const wordbookId = summary.wordbookId || 'cet4-core-100';
+  if (!WORDBOOK_IDS.includes(wordbookId)) {
+    throw new Error('词书无效');
+  }
+  const studyType = summary.studyType || 'new';
+  if (!['new', 'review'].includes(studyType)) {
+    throw new Error('学习类型无效');
+  }
+
+  const answers = summary.answers.map((answer) => {
     if (!answer.wordId || typeof answer.isCorrect !== 'boolean') {
       throw new Error('答案字段不完整');
     }
     if (!['flashcard', 'quiz'].includes(answer.mode)) {
       throw new Error('学习模式无效');
     }
+    return {
+      wordId: answer.wordId,
+      isCorrect: answer.isCorrect,
+      mode: answer.mode,
+    };
   });
-  return summary;
+
+  return {
+    roundId: summary.roundId,
+    wordbookId,
+    studyType,
+    total: summary.total,
+    score: summary.score,
+    completedAt: summary.completedAt,
+    answers,
+  };
 }
 
 module.exports = {

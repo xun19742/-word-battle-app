@@ -2,6 +2,7 @@
   "pages": [
     "pages/home/index",
     "pages/settings/index",
+    "pages/wordbooks/index",
     "pages/flashcard/index",
     "pages/quiz/index",
     "pages/summary/index",

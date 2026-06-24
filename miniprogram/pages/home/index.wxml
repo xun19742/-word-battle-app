@@ -1,4 +1,4 @@
-<!-- 首页展示当前词书、学习模式和一键开始入口。 -->
+<!-- 首页展示当前词书、新词计划、复习计划和对应学习入口。 -->
 <view class="page">
   <view class="header">
     <view>
@@ -12,29 +12,47 @@
     <text>{{cloudMessage || '有学习记录等待同步，联网后会自动重试'}}</text>
   </view>
 
-  <view class="card hero-card">
-    <text class="eyebrow">当前词书</text>
-    <text class="book-name">{{bookName}}</text>
-    <text class="muted">内置 {{wordCount}} 个核心单词</text>
-
-    <view class="progress-row">
-      <text>今日已学 {{todayCompleted}} 词</text>
-      <text>目标 {{settings.roundSize}} 词</text>
+  <view class="book-picker" bindtap="openWordbooks">
+    <view>
+      <text class="eyebrow">当前词书</text>
+      <text class="book-name">{{bookName}}</text>
+      <text class="muted">{{wordCount}} 个单词</text>
     </view>
-    <view class="progress-track"><view class="progress-value" style="width: {{progressPercent}}%;"></view></view>
-
-    <view class="mode-row">
-      <view class="mode-icon">W</view>
-      <view class="mode-copy">
-        <text class="mode-label">{{modeLabel}}</text>
-        <text class="muted">可在设置中切换默认模式</text>
-      </view>
-    </view>
-
-    <button class="primary-button" bindtap="startLearning">开始背词</button>
-    <button wx:if="{{activeRound}}" class="resume-button" bindtap="resumeLearning">继续上次学习</button>
-    <button class="wrong-button" bindtap="openWrongWords">复习错词</button>
+    <text class="change-book">切换 ›</text>
   </view>
+
+  <view class="plan-grid">
+    <view class="plan-card">
+      <text class="plan-label">今日新词</text>
+      <text class="plan-number">{{newCompleted}} / {{settings.dailyNewWords}}</text>
+      <view class="progress-track">
+        <view class="progress-value" style="width: {{newProgressPercent}}%;"></view>
+      </view>
+      <button class="primary-button plan-button" bindtap="startNewWords">学习新词</button>
+    </view>
+
+    <view class="plan-card">
+      <text class="plan-label">今日复习</text>
+      <text class="plan-number">{{reviewCompleted}} / {{reviewTarget}}</text>
+      <view class="progress-track">
+        <view class="progress-value review-value" style="width: {{reviewProgressPercent}}%;"></view>
+      </view>
+      <button class="review-button plan-button" bindtap="startReview">今日复习</button>
+    </view>
+  </view>
+
+  <view class="mode-row">
+    <view class="mode-icon">W</view>
+    <view class="mode-copy">
+      <text class="mode-label">{{modeLabel}}</text>
+      <text class="muted">每轮最多 10 词，可在设置中切换模式</text>
+    </view>
+  </view>
+
+  <button wx:if="{{activeRound}}" class="resume-button" bindtap="resumeLearning">
+    继续 {{activeBookName}} 的上次学习
+  </button>
+  <button class="wrong-button" bindtap="openWrongWords">查看当前词书错词</button>
 
   <view class="coming-soon">对战模式 · 后续开放</view>
 </view>

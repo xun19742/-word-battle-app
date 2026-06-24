@@ -1,28 +1,63 @@
 # WordRush（联机背单词）
 
-WordRush 是一个原生微信小程序 MVP。当前版本先完成单人背词闭环，支持内置四级核心词汇、单词卡片、四选一、学习总结、设置、错词复习和 CloudBase 学习进度同步。
+WordRush 是一个原生微信小程序 MVP。当前版本先完成单人背词闭环，支持内置考试词书、单词卡片、四选一练习、每日新词计划、每日复习计划、学习总结、错词复习、设置页和 CloudBase 学习进度同步。
 
-排行榜和联机抢答不在当前 MVP 范围内。
+排行榜和联机抢答不在当前 MVP 范围内。个人 CSV 导入也先放到下一期，当前优先保证内置词书可用、可测、可运行。
 
 ## 功能
 
-- 内置“四级核心词汇”100 词。
-- 单词卡片：先回忆，再查看释义，标记认识或不认识。
-- 四选一：四个不重复选项，即时显示正误和例句。
-- 设置默认学习模式和每轮 10/20 词。
-- 记录今日进度、得分和错词。
-- 未完成轮次恢复。
-- 网络失败时保留待同步记录，联网后自动重试。
-- 云端按 `roundId` 幂等同步，避免重复积分。
+- 内置四本考试词书：四级、六级、考研、雅思。
+- 默认每天背 25 个新词。
+- 默认复习比例为 1:2，也就是每天复习 50 个词。
+- 每日新词数量可设置为 5-500，按 5 的倍数保存。
+- 每日复习比例可设置为 1:1、1:2、1:3。
+- 每轮学习最多 10 个词，避免一次学习过长。
+- 单词卡片：点击屏幕显示词义，标记认识或不认识。
+- 四选一练习：即时显示正确或错误。
+- 当前词书独立记录学习进度和错词。
+- 没有例句的词不会显示空例句区域。
+- 网络失败时学习记录保存在本机，联通后再同步。
+
+## 内置词书
+
+词书数据来自 [ECDICT](https://github.com/skywind3000/ECDICT)，固定提交：
+
+```text
+bc015ed2e24a7abef49fc6dbbb7fe32c1dadaf8b
+```
+
+ECDICT 使用 MIT License，完整第三方声明见 `THIRD_PARTY_NOTICES.md`。
+
+当前生成结果：
+
+```text
+四级 cet4：3849 词
+六级 cet6：5407 词
+考研 postgraduate：4801 词
+雅思 ielts：5040 词
+共享去重词条：7836 条
+```
+
+重新生成词书时，先下载固定版本的 `ecdict.csv`，再运行：
+
+```powershell
+node scripts/build-exam-wordbooks.js <ecdict.csv路径>
+```
+
+生成文件为：
+
+```text
+miniprogram/data/exam-wordbooks.generated.js
+```
 
 ## 本地运行
 
 1. 安装微信开发者工具。
 2. 导入仓库根目录，工具会读取 `project.config.json`。
-3. `touristappid` 可直接预览本地 UI 和本地学习流程。
-4. 要使用 CloudBase，请在开发者工具中把 AppID 切换为你自己的微信小程序 AppID。
+3. 使用 `touristappid` 可以直接预览本地 UI 和本地学习流程。
+4. 如果要使用 CloudBase，请在开发者工具中把 AppID 切换为你自己的微信小程序 AppID。
 
-项目没有第三方前端依赖。Node.js 18 或更高版本可运行自动测试：
+项目没有前端三方依赖。Node.js 18 或更高版本可运行自动测试：
 
 ```powershell
 node --test
@@ -41,57 +76,42 @@ npm test
 
 ```text
 users
-wordbooks
-words
 learning_records
 learning_rounds
 ```
 
 3. 右键 `cloudfunctions/login`，选择“上传并部署：云端安装依赖”。
 4. 右键 `cloudfunctions/sync-learning`，选择相同部署方式。
-5. 先运行词书数据生成命令：
 
-```powershell
-node scripts/prepare-cloud-wordbook.js
-```
-
-6. 右键 `cloudfunctions/seed-wordbook`，选择“上传并部署：云端安装依赖”。
-7. 给 `seed-wordbook` 云函数配置环境变量 `SEED_ADMIN_OPENID`，值为你的微信 OpenID。
-8. 在开发者工具中调用一次 `seed-wordbook`，确认返回：
-
-```json
-{
-  "wordbookId": "cet4-core-100",
-  "wordCount": 100
-}
-```
-
-9. 初始化完成后可删除或停用 `seed-wordbook` 云函数，降低公共词库被修改的风险。
+当前 MVP 的内置词书已经打包在小程序本地，不要求先把完整词书种到云数据库。云端只负责用户设置、学习记录和轮次去重。
 
 ## 数据策略
 
-- `miniprogram/data/cet4-core-100.js` 是词书唯一源数据。
-- `scripts/prepare-cloud-wordbook.js` 机械复制数据到种子云函数，避免手工维护两份词书。
-- 本地学习记录保证游客模式和断网可用。
-- CloudBase 是已登录用户的正式同步数据源。
-- `learning_rounds` 使用用户 OpenID 和 `roundId` 形成稳定文档 ID，实现重复提交保护。
+- `miniprogram/data/exam-wordbooks.generated.js` 是四本考试词书的运行时数据。
+- `miniprogram/data/cet4-core-100.js` 保留为旧版本兼容词书。
+- `miniprogram/services/wordbook-service.js` 统一提供词书列表、读取和校验。
+- `miniprogram/services/study-plan-service.js` 根据设置和学习记录选择下一轮新词或复习词。
+- `learning_records` 使用用户 OpenID、词书 ID 和单词 ID 组成文档 ID，避免不同词书的同一个单词互相覆盖。
+- `learning_rounds` 使用用户 OpenID、词书 ID 和 `roundId` 去重，避免重复提交积分。
 
 ## 发布前验收
 
 ```text
-[ ] 首页显示“四级核心词汇”和 100 词
-[ ] 卡片模式能完成 10 词并进入总结页
-[ ] 四选一每题有四个不重复选项
-[ ] 设置切换后下一轮进入新默认模式
-[ ] 答错单词出现在错词页
-[ ] 未完成轮次可以恢复
+[ ] 首页显示当前词书名称和词数
+[ ] 可以切换四级、六级、考研、雅思
+[ ] 设置每日新词为 500 后保存成功
+[ ] 复习比例 1:1、1:2、1:3 分别显示正确复习目标
+[ ] 卡片模式点击屏幕后显示词义
+[ ] 四选一模式每题有四个不重复选项
+[ ] 学习一轮新词后，新词进度增加
+[ ] 学习一轮复习词后，复习进度增加
+[ ] 答错单词出现在当前词书的错词页
+[ ] 没有例句的词不会留下空白例句区域
 [ ] 断网提交会保留，联网后自动同步
-[ ] 相同 roundId 重试不会重复积分
-[ ] 云端 wordbooks.wordCount 和 words 实际数量都是 100
 ```
 
 ## 代码约定
 
 - 业务 JavaScript 使用中文注释说明规则和原因。
 - JSON 不支持注释，不写入非法注释。
-- 每个功能完成测试后独立提交。
+- 生成文件不要手工编辑，修改生成逻辑后重新运行构建脚本。

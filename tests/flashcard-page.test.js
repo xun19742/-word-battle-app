@@ -94,3 +94,19 @@ test('背词页使用独立深色主题和薄荷绿强调色', () => {
   assert.equal(pageConfig.navigationBarBackgroundColor, '#171D3C');
   assert.equal(pageConfig.backgroundColor, '#171D3C');
 });
+
+test('背词页和答题页只在存在例句时渲染例句区域', () => {
+  const flashcardWxml = fs.readFileSync(
+    path.join(__dirname, '..', 'miniprogram', 'pages', 'flashcard', 'index.wxml'),
+    'utf8',
+  );
+  const quizWxml = fs.readFileSync(
+    path.join(__dirname, '..', 'miniprogram', 'pages', 'quiz', 'index.wxml'),
+    'utf8',
+  );
+
+  assert.match(flashcardWxml, /wx:if="{{currentWord\.example}}"/);
+  assert.match(flashcardWxml, /wx:if="{{currentWord\.exampleTranslation}}"/);
+  assert.match(quizWxml, /wx:if="{{currentWord\.example}}"/);
+  assert.match(quizWxml, /wx:if="{{currentWord\.exampleTranslation}}"/);
+});

@@ -1,48 +1,48 @@
-/* 首页用明确层级突出词书与开始学习动作。 */
+/* 首页突出当前词书和两个独立的每日学习计划。 */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 24rpx 0 40rpx;
+  margin: 24rpx 0 34rpx;
 }
 
-.title {
-  display: block;
-  font-size: 52rpx;
-  font-weight: 700;
-}
-
-.subtitle {
-  display: block;
-  margin-top: 8rpx;
-  color: #718096;
-  font-size: 26rpx;
-}
-
-.settings-button {
-  width: 80rpx;
-  height: 80rpx;
-  padding: 0;
-  color: #5968e8;
-  background: #fff;
-  border-radius: 50%;
-  line-height: 80rpx;
-}
-
+.title { display: block; font-size: 52rpx; font-weight: 700; }
+.subtitle { display: block; margin-top: 8rpx; color: #718096; font-size: 26rpx; }
+.settings-button { width: 80rpx; height: 80rpx; padding: 0; color: #5968e8; background: #fff; border-radius: 50%; line-height: 80rpx; }
 .settings-button::after { border: 0; }
 .cloud-banner { padding: 20rpx 24rpx; margin-bottom: 24rpx; color: #8a5a10; background: #fff8e6; border-radius: 18rpx; font-size: 24rpx; }
-.hero-card { padding: 40rpx; }
-.eyebrow { display: block; color: #718096; font-size: 24rpx; }
-.book-name { display: block; margin: 12rpx 0 6rpx; font-size: 42rpx; font-weight: 700; }
-.progress-row { display: flex; justify-content: space-between; margin-top: 44rpx; font-size: 26rpx; }
-.progress-track { height: 14rpx; margin: 16rpx 0 36rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
-.progress-value { width: 0; height: 100%; background: #5968e8; }
-.mode-row { display: flex; align-items: center; padding: 24rpx; margin-bottom: 32rpx; background: #f6f8ff; border-radius: 20rpx; }
-.mode-icon { display: flex; align-items: center; justify-content: center; width: 72rpx; height: 72rpx; margin-right: 20rpx; color: #fff; font-weight: 700; background: #5968e8; border-radius: 18rpx; }
-.mode-copy { display: flex; flex-direction: column; }
+
+.book-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  box-shadow: 0 12rpx 36rpx rgba(72, 88, 160, 0.1);
+}
+
+.eyebrow { display: block; color: #718096; font-size: 23rpx; }
+.book-name { display: block; margin: 8rpx 0 4rpx; font-size: 36rpx; font-weight: 700; }
+.change-book { color: #5968e8; font-size: 26rpx; font-weight: 700; }
+.muted { color: #718096; font-size: 24rpx; }
+
+.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20rpx; margin-top: 24rpx; }
+.plan-card { padding: 28rpx 24rpx; background: #fff; border-radius: 24rpx; box-shadow: 0 10rpx 30rpx rgba(72, 88, 160, 0.08); }
+.plan-label { display: block; color: #718096; font-size: 24rpx; }
+.plan-number { display: block; margin-top: 8rpx; font-size: 32rpx; font-weight: 700; }
+.progress-track { height: 11rpx; margin: 18rpx 0 24rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
+.progress-value { height: 100%; background: #5968e8; border-radius: 999rpx; }
+.review-value { background: #26a77b; }
+.plan-button { padding: 0; font-size: 25rpx; line-height: 72rpx; }
+.review-button { color: #176c52; background: #e5f8f1; border-radius: 999rpx; }
+.review-button::after { border: 0; }
+
+.mode-row { display: flex; align-items: center; padding: 24rpx; margin-top: 24rpx; background: #eef0ff; border-radius: 20rpx; }
+.mode-icon { display: flex; align-items: center; justify-content: center; width: 68rpx; height: 68rpx; margin-right: 18rpx; color: #fff; font-weight: 700; background: #5968e8; border-radius: 18rpx; }
+.mode-copy { display: flex; min-width: 0; flex-direction: column; }
 .mode-label { margin-bottom: 4rpx; font-weight: 700; }
-.primary-button, .resume-button, .wrong-button { margin-top: 20rpx; }
-.resume-button { color: #5968e8; background: #eef0ff; border-radius: 999rpx; }
-.wrong-button { color: #5968e8; background: transparent; border-radius: 999rpx; }
+.resume-button { margin-top: 24rpx; color: #5968e8; background: #eef0ff; border-radius: 999rpx; }
+.wrong-button { margin-top: 16rpx; color: #5968e8; background: transparent; border-radius: 999rpx; }
 .resume-button::after, .wrong-button::after { border: 0; }
-.coming-soon { margin-top: 36rpx; color: #a0aec0; text-align: center; font-size: 25rpx; }
+.coming-soon { margin-top: 30rpx; color: #a0aec0; text-align: center; font-size: 24rpx; }

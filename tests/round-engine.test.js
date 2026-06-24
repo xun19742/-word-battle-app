@@ -53,3 +53,25 @@ test('干扰项不足时拒绝生成重复选项', () => {
     /四选一干扰项不足/,
   );
 });
+
+test('轮次和总结携带词书与学习类型', () => {
+  const round = createRound(words, 10, 'flashcard', () => 0.5, {
+    wordbookId: 'ielts',
+    studyType: 'review',
+  });
+  const summary = getSummary(round);
+  assert.equal(round.wordbookId, 'ielts');
+  assert.equal(round.studyType, 'review');
+  assert.equal(summary.wordbookId, 'ielts');
+  assert.equal(summary.studyType, 'review');
+});
+
+test('旧调用回落到兼容词书和新词类型', () => {
+  const round = createRound(words, 1, 'flashcard', () => 0.5);
+  assert.equal(round.wordbookId, 'cet4-core-100');
+  assert.equal(round.studyType, 'new');
+  assert.throws(
+    () => createRound([...words, { id: 'w11' }], 11, 'flashcard'),
+    /每轮单词数无效/,
+  );
+});

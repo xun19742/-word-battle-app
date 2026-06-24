@@ -1,0 +1,57 @@
+/* 词书列表保持单列，便于比较名称、规模和来源。 */
+.page-title {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+}
+
+.page-description {
+  display: block;
+  margin: 10rpx 0 34rpx;
+  color: #718096;
+  font-size: 25rpx;
+}
+
+.book-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  margin-bottom: 22rpx;
+  background: #fff;
+  border: 3rpx solid transparent;
+  border-radius: 26rpx;
+  box-shadow: 0 10rpx 30rpx rgba(72, 88, 160, 0.09);
+}
+
+.book-card-active {
+  background: #f1f3ff;
+  border-color: #5968e8;
+}
+
+.book-copy {
+  display: flex;
+  min-width: 0;
+  padding-right: 20rpx;
+  flex-direction: column;
+}
+
+.book-name {
+  font-size: 31rpx;
+  font-weight: 700;
+}
+
+.book-description,
+.book-meta {
+  margin-top: 8rpx;
+  color: #718096;
+  font-size: 24rpx;
+}
+
+.selected-mark {
+  flex-shrink: 0;
+  color: #5968e8;
+  font-size: 25rpx;
+  font-weight: 700;
+}

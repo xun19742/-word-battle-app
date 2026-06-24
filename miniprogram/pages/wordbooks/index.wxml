@@ -1,0 +1,20 @@
+<!-- 词书页展示内置词书来源、词数和当前选择状态。 -->
+<view class="page">
+  <text class="page-title">选择学习词书</text>
+  <text class="page-description">不同词书的学习记录会分别保存</text>
+
+  <view
+    wx:for="{{books}}"
+    wx:key="id"
+    class="book-card {{selectedWordbookId === item.id ? 'book-card-active' : ''}}"
+    data-id="{{item.id}}"
+    bindtap="selectWordbook"
+  >
+    <view class="book-copy">
+      <text class="book-name">{{item.name}}</text>
+      <text class="book-description">{{item.description}}</text>
+      <text class="book-meta">{{item.wordCount}} 词 · 来源 {{item.source}}</text>
+    </view>
+    <text class="selected-mark">{{selectedWordbookId === item.id ? '当前' : '选择'}}</text>
+  </view>
+</view>
