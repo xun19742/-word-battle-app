@@ -35,3 +35,12 @@ test('词书页列出并保存用户选择', () => {
   assert.match(wxml, /wx:for="{{books}}"/);
   assert.match(wxml, /bindtap="selectWordbook"/);
 });
+
+test('首页双计划卡片在窄屏中不会横向溢出', () => {
+  const wxss = readPage('home', 'wxss');
+
+  assert.match(wxss, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(wxss, /\.plan-card\s*\{[^}]*box-sizing:\s*border-box/);
+  assert.match(wxss, /\.plan-card\s*\{[^}]*min-width:\s*0/);
+  assert.match(wxss, /\.plan-button\s*\{[^}]*width:\s*100%/);
+});

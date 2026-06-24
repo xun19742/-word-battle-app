@@ -27,14 +27,14 @@
 .change-book { color: #5968e8; font-size: 26rpx; font-weight: 700; }
 .muted { color: #718096; font-size: 24rpx; }
 
-.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20rpx; margin-top: 24rpx; }
-.plan-card { padding: 28rpx 24rpx; background: #fff; border-radius: 24rpx; box-shadow: 0 10rpx 30rpx rgba(72, 88, 160, 0.08); }
+.plan-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20rpx; margin-top: 24rpx; }
+.plan-card { box-sizing: border-box; min-width: 0; padding: 28rpx 22rpx; background: #fff; border-radius: 24rpx; box-shadow: 0 10rpx 30rpx rgba(72, 88, 160, 0.08); }
 .plan-label { display: block; color: #718096; font-size: 24rpx; }
 .plan-number { display: block; margin-top: 8rpx; font-size: 32rpx; font-weight: 700; }
 .progress-track { height: 11rpx; margin: 18rpx 0 24rpx; overflow: hidden; background: #e9edff; border-radius: 999rpx; }
 .progress-value { height: 100%; background: #5968e8; border-radius: 999rpx; }
 .review-value { background: #26a77b; }
-.plan-button { padding: 0; font-size: 25rpx; line-height: 72rpx; }
+.plan-button { box-sizing: border-box; width: 100%; padding: 0 8rpx; font-size: 25rpx; line-height: 72rpx; }
 .review-button { color: #176c52; background: #e5f8f1; border-radius: 999rpx; }
 .review-button::after { border: 0; }
 
