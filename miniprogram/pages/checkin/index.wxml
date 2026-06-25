@@ -1,0 +1,38 @@
+<!-- 打卡记录页展示本地学习打卡，后续云端同步时可复用同一数据结构。 -->
+<view class="page">
+  <text class="page-title">打卡记录</text>
+  <text class="page-description">完成一轮学习后会自动打卡。</text>
+
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-value">{{stats.streak}}</text>
+      <text class="stat-label">连续打卡</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.todayCompleted}}</text>
+      <text class="stat-label">今日学习</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.totalDays}}</text>
+      <text class="stat-label">累计天数</text>
+    </view>
+  </view>
+
+  <view wx:if="{{days.length}}" class="record-list">
+    <view wx:for="{{days}}" wx:key="date" class="record-card">
+      <view>
+        <text class="record-date">{{item.date}}</text>
+        <text class="record-detail">新词 {{item.newCompleted}} · 复习 {{item.reviewCompleted}} · {{item.rounds}} 轮</text>
+      </view>
+      <view class="record-score">
+        <text class="score-value">{{item.score}}</text>
+        <text class="score-label">分</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty-state">
+    <text class="empty-title">还没有打卡记录</text>
+    <text class="muted">完成一轮学习后，这里会出现你的打卡记录。</text>
+  </view>
+</view>

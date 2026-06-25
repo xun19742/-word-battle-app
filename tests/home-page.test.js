@@ -56,3 +56,17 @@ test('首页提供我的资料入口', () => {
   assert.match(wxml, /bindtap="openProfile"/);
   assert.match(wxml, />我的</);
 });
+
+test('首页展示打卡状态并提供打卡记录入口', () => {
+  const js = readPage('home', 'js');
+  const wxml = readPage('home', 'wxml');
+  const wxss = readPage('home', 'wxss');
+  assert.match(js, /checkin-service/);
+  assert.match(js, /loadCheckinStats/);
+  assert.match(js, /openCheckins\(\)/);
+  assert.match(wxml, /checkinStats/);
+  assert.match(wxml, /今日已打卡/);
+  assert.match(wxml, /今日未打卡/);
+  assert.match(wxml, /bindtap="openCheckins"/);
+  assert.match(wxss, /\.checkin-card/);
+});

@@ -1,0 +1,102 @@
+/* 打卡记录页保持轻量列表，让用户快速看到连续天数和每日学习量。 */
+.page-title {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+}
+
+.page-description {
+  display: block;
+  margin: 10rpx 0 28rpx;
+  color: #718096;
+  font-size: 25rpx;
+}
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18rpx;
+  padding: 28rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  box-shadow: 0 12rpx 36rpx rgba(72, 88, 160, 0.1);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  color: #202853;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 8rpx;
+  color: #718096;
+  font-size: 23rpx;
+}
+
+.record-list {
+  margin-top: 24rpx;
+}
+
+.record-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx;
+  margin-bottom: 18rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 30rpx rgba(72, 88, 160, 0.08);
+}
+
+.record-date {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.record-detail {
+  display: block;
+  margin-top: 8rpx;
+  color: #718096;
+  font-size: 24rpx;
+}
+
+.record-score {
+  min-width: 88rpx;
+  text-align: right;
+}
+
+.score-value {
+  color: #5968e8;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.score-label {
+  margin-left: 4rpx;
+  color: #718096;
+  font-size: 22rpx;
+}
+
+.empty-state {
+  padding: 70rpx 30rpx;
+  margin-top: 24rpx;
+  text-align: center;
+  background: #fff;
+  border-radius: 28rpx;
+}
+
+.empty-title {
+  display: block;
+  margin-bottom: 12rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}

@@ -14,6 +14,8 @@
 .settings-button { width: 80rpx; height: 80rpx; padding: 0; color: #5968e8; background: #fff; border-radius: 50%; line-height: 80rpx; }
 .settings-button::after { border: 0; }
 .cloud-banner { padding: 20rpx 24rpx; margin-bottom: 24rpx; color: #8a5a10; background: #fff8e6; border-radius: 18rpx; font-size: 24rpx; }
+.checkin-card { display: flex; align-items: center; justify-content: space-between; padding: 28rpx 32rpx; margin-bottom: 24rpx; background: #fff; border-radius: 28rpx; box-shadow: 0 12rpx 36rpx rgba(72, 88, 160, 0.1); }
+.checkin-title { display: block; margin: 8rpx 0 4rpx; font-size: 34rpx; font-weight: 700; }
 
 .book-picker {
   display: flex;

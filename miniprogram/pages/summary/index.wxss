@@ -4,6 +4,7 @@
 .complete-label { margin-top: 60rpx; color: #718096; }
 .score { margin-top: 16rpx; color: #5968e8; font-size: 112rpx; font-weight: 800; }
 .score-label { color: #718096; }
+.checkin-message { display: block; padding: 14rpx 22rpx; margin: 18rpx auto 0; color: #176c52; background: #e5f8f1; border-radius: 999rpx; font-size: 24rpx; }
 .stats-card { display: grid; grid-template-columns: repeat(3, 1fr); padding: 32rpx 12rpx; margin: 56rpx 0; background: #fff; border-radius: 28rpx; }
 .stat { display: flex; flex-direction: column; color: #718096; font-size: 24rpx; }
 .stat-value { margin-bottom: 8rpx; color: #24305e; font-size: 38rpx; font-weight: 700; }

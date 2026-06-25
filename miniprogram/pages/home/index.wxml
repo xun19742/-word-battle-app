@@ -15,6 +15,15 @@
     <text>{{cloudMessage || '有学习记录等待同步，联网后会自动重试'}}</text>
   </view>
 
+  <view class="checkin-card" bindtap="openCheckins">
+    <view>
+      <text class="eyebrow">{{checkinStats.checkedToday ? '今日已打卡' : '今日未打卡'}}</text>
+      <text class="checkin-title">连续 {{checkinStats.streak}} 天</text>
+      <text class="muted">今日学习 {{checkinStats.todayCompleted}} 词 · 累计 {{checkinStats.totalDays}} 天</text>
+    </view>
+    <text class="change-book">记录 ›</text>
+  </view>
+
   <view class="book-picker" bindtap="openWordbooks">
     <view>
       <text class="eyebrow">当前词书</text>

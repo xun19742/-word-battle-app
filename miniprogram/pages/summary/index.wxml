@@ -3,6 +3,7 @@
   <text class="complete-label">本轮完成</text>
   <text class="score">{{summary.score}}</text>
   <text class="score-label">本轮得分</text>
+  <text wx:if="{{checkinMessage}}" class="checkin-message">今日打卡已记录</text>
 
   <view class="stats-card">
     <view class="stat"><text class="stat-value correct">{{summary.correctCount}}</text><text>已掌握</text></view>

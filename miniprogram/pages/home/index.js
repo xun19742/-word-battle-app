@@ -8,6 +8,7 @@ const { saveRound, loadRound } = require('../../utils/round-storage');
 const {
   createWxLearningRepository,
 } = require('../../services/learning-repository');
+const { createWxCheckinStore } = require('../../services/checkin-service');
 
 Page({
   data: {
@@ -24,6 +25,13 @@ Page({
     reviewTarget: 0,
     newProgressPercent: 0,
     reviewProgressPercent: 0,
+    checkinStats: {
+      checkedToday: false,
+      streak: 0,
+      todayCompleted: 0,
+      todayScore: 0,
+      totalDays: 0,
+    },
     cloudMessage: '',
     syncPending: false,
   },
@@ -35,6 +43,7 @@ Page({
     const activeRound = loadRound();
     const app = getApp();
     const reviewTarget = settings.dailyNewWords * settings.reviewRatio;
+    const checkinStats = createWxCheckinStore().loadCheckinStats();
     this.setData({
       bookName: book.name,
       wordCount: book.words.length,
@@ -59,6 +68,7 @@ Page({
         100,
         Math.round((today.reviewCompleted / reviewTarget) * 100),
       ),
+      checkinStats,
       cloudMessage: app.globalData.cloudMessage,
       syncPending: app.globalData.syncPending,
     });
@@ -132,6 +142,10 @@ Page({
 
   openProfile() {
     wx.navigateTo({ url: '/pages/profile/index' });
+  },
+
+  openCheckins() {
+    wx.navigateTo({ url: '/pages/checkin/index' });
   },
 
   openWordbooks() {

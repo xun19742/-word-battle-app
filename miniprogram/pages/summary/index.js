@@ -4,10 +4,12 @@ const { getWordbook } = require('../../services/wordbook-service');
 const { loadSettings } = require('../../services/settings-service');
 const { buildStudyPlan } = require('../../services/study-plan-service');
 const { createWxLearningRepository } = require('../../services/learning-repository');
+const { createWxCheckinStore } = require('../../services/checkin-service');
 
 Page({
   data: {
     summary: null,
+    checkinMessage: '',
   },
 
   onLoad() {
@@ -18,8 +20,12 @@ Page({
     }
     const summary = getSummary(round);
     createWxLearningRepository().applySummary(summary);
+    const checkin = createWxCheckinStore().applyCheckinSummary(summary);
     clearRound();
-    this.setData({ summary });
+    this.setData({
+      summary,
+      checkinMessage: checkin.applied ? '今日打卡已记录' : '',
+    });
   },
 
   restart() {
