@@ -9,6 +9,8 @@
 .title { display: block; font-size: 52rpx; font-weight: 700; }
 .subtitle { display: block; margin-top: 8rpx; color: #718096; font-size: 26rpx; }
 .header-actions { display: flex; align-items: center; gap: 16rpx; }
+.ranking-button { width: 116rpx; height: 64rpx; padding: 0; color: #176c52; background: #e5f8f1; border-radius: 999rpx; font-size: 24rpx; line-height: 64rpx; }
+.ranking-button::after { border: 0; }
 .profile-button { width: 96rpx; height: 64rpx; padding: 0; color: #5968e8; background: #fff; border-radius: 999rpx; font-size: 24rpx; line-height: 64rpx; }
 .profile-button::after { border: 0; }
 .settings-button { width: 80rpx; height: 80rpx; padding: 0; color: #5968e8; background: #fff; border-radius: 50%; line-height: 80rpx; }

@@ -148,6 +148,11 @@ Page({
     wx.navigateTo({ url: '/pages/checkin/index' });
   },
 
+  openRanking() {
+    // 排行榜单独成页，后续对战结果会统一沉淀到这里展示。
+    wx.navigateTo({ url: '/pages/ranking/index' });
+  },
+
   openWordbooks() {
     wx.navigateTo({ url: '/pages/wordbooks/index' });
   },

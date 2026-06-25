@@ -57,6 +57,11 @@ test('应用注册打卡记录页', () => {
   assert.equal(app.pages.includes('pages/checkin/index'), true);
 });
 
+test('应用注册排行榜页', () => {
+  const app = readApp();
+  assert.equal(app.pages.includes('pages/ranking/index'), true);
+});
+
 test('首页展示云端状态提示区域', () => {
   const homePath = path.join(__dirname, '..', 'miniprogram', 'pages', 'home', 'index.wxml');
   const home = fs.readFileSync(homePath, 'utf8');

@@ -3,6 +3,7 @@
     "pages/home/index",
     "pages/profile/index",
     "pages/checkin/index",
+    "pages/ranking/index",
     "pages/settings/index",
     "pages/wordbooks/index",
     "pages/flashcard/index",

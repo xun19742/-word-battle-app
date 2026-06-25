@@ -70,3 +70,14 @@ test('首页展示打卡状态并提供打卡记录入口', () => {
   assert.match(wxml, /bindtap="openCheckins"/);
   assert.match(wxss, /\.checkin-card/);
 });
+
+test('首页提供排行榜入口', () => {
+  const js = readPage('home', 'js');
+  const wxml = readPage('home', 'wxml');
+  const wxss = readPage('home', 'wxss');
+
+  assert.match(js, /openRanking\(\)/);
+  assert.match(wxml, /bindtap="openRanking"/);
+  assert.match(wxml, />排行榜</);
+  assert.match(wxss, /\.ranking-button/);
+});

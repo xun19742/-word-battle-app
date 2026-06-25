@@ -1,0 +1,36 @@
+<!-- 排行榜页读取云端公开战绩字段，未开通云开发时显示安全降级提示。 -->
+<view class="page">
+  <text class="page-title">排行榜</text>
+  <text class="page-description">好友对战开放后，这里会展示积分和胜场排名。</text>
+
+  <view class="tab-row">
+    <button
+      class="tab-button {{activeType === 'battleScore' ? 'tab-button-active' : ''}}"
+      data-type="battleScore"
+      bindtap="switchRanking"
+    >积分榜</button>
+    <button
+      class="tab-button {{activeType === 'battleWins' ? 'tab-button-active' : ''}}"
+      data-type="battleWins"
+      bindtap="switchRanking"
+    >胜场榜</button>
+  </view>
+
+  <view wx:if="{{loading}}" class="state-card">加载排行榜中...</view>
+  <view wx:elif="{{message}}" class="state-card" data-cloud-message="排行榜需要云服务">{{message}}</view>
+  <view wx:elif="{{!list.length}}" class="state-card">还没有排行榜数据</view>
+
+  <view wx:else class="ranking-list">
+    <view wx:for="{{list}}" wx:key="rank" class="ranking-card">
+      <text class="rank-number">{{item.rank}}</text>
+      <view class="avatar">
+        <image wx:if="{{item.avatarUrl}}" class="avatar-image" src="{{item.avatarUrl}}" mode="aspectFill" />
+        <text wx:else>W</text>
+      </view>
+      <view class="player-info">
+        <text class="player-name">{{item.nickname}}</text>
+        <text class="player-meta">积分 {{item.battleScore}} · 胜场 {{item.battleWins}} · {{item.battlePlayed}} 局</text>
+      </view>
+    </view>
+  </view>
+</view>

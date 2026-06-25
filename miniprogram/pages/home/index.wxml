@@ -6,6 +6,7 @@
       <text class="subtitle">今天也来认识新单词吧</text>
     </view>
     <view class="header-actions">
+      <button class="ranking-button" bindtap="openRanking">排行榜</button>
       <button class="profile-button" bindtap="openProfile">我的</button>
       <button class="settings-button" bindtap="openSettings" aria-label="打开设置">⚙</button>
     </view>
