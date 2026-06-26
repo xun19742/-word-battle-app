@@ -22,7 +22,12 @@ async function callBattle(action, data = {}) {
       room: result.room || null,
     };
   } catch (error) {
-    return { success: false, message: '对战请求失败', room: null };
+    const detail = error && (error.errMsg || error.message || error.toString());
+    return {
+      success: false,
+      message: detail ? `对战请求失败：${detail}` : '对战请求失败',
+      room: null,
+    };
   }
 }
 

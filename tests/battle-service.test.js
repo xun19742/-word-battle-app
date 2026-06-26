@@ -40,6 +40,20 @@ test('创建房间调用 battle 云函数并传入 action', async () => {
   });
 });
 
+test('云函数异常时返回具体错误消息', async () => {
+  const { createRoom } = reloadService({
+    cloud: {
+      callFunction: async () => {
+        throw new Error('云函数 battle 未部署');
+      },
+    },
+  });
+  const result = await createRoom({ wordbookId: 'cet4', questions: [] });
+
+  assert.equal(result.success, false);
+  assert.equal(result.message, '对战请求失败：云函数 battle 未部署');
+});
+
 test('watchRoom 优先使用数据库 watch 并返回关闭函数', () => {
   let closed = false;
   const { watchRoom } = reloadService({
