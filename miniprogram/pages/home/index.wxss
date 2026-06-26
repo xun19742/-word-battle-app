@@ -51,5 +51,5 @@
 .mode-label { margin-bottom: 4rpx; font-weight: 700; }
 .resume-button { margin-top: 24rpx; color: #5968e8; background: #eef0ff; border-radius: 999rpx; }
 .wrong-button { margin-top: 16rpx; color: #5968e8; background: transparent; border-radius: 999rpx; }
-.resume-button::after, .wrong-button::after { border: 0; }
-.coming-soon { margin-top: 30rpx; color: #a0aec0; text-align: center; font-size: 24rpx; }
+.battle-button { margin-top: 18rpx; color: #fff; background: #5968e8; border-radius: 999rpx; }
+.resume-button::after, .wrong-button::after, .battle-button::after { border: 0; }

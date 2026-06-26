@@ -153,6 +153,11 @@ Page({
     wx.navigateTo({ url: '/pages/ranking/index' });
   },
 
+  openBattle() {
+    // 好友对战独立成页，避免影响单人背词主流程。
+    wx.navigateTo({ url: '/pages/battle/index' });
+  },
+
   openWordbooks() {
     wx.navigateTo({ url: '/pages/wordbooks/index' });
   },

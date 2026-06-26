@@ -67,5 +67,5 @@
   </button>
   <button class="wrong-button" bindtap="openWrongWords">查看当前词书错词</button>
 
-  <view class="coming-soon">对战模式 · 后续开放</view>
+  <button class="battle-button" bindtap="openBattle">好友对战</button>
 </view>

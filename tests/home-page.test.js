@@ -81,3 +81,14 @@ test('首页提供排行榜入口', () => {
   assert.match(wxml, />排行榜</);
   assert.match(wxss, /\.ranking-button/);
 });
+
+test('首页提供好友对战入口', () => {
+  const js = readPage('home', 'js');
+  const wxml = readPage('home', 'wxml');
+  const wxss = readPage('home', 'wxss');
+
+  assert.match(js, /openBattle\(\)/);
+  assert.match(wxml, /bindtap="openBattle"/);
+  assert.match(wxml, />好友对战</);
+  assert.match(wxss, /\.battle-button/);
+});
