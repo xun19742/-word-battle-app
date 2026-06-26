@@ -1,0 +1,47 @@
+<!-- 对战房间页用同一套房间状态展示等待、答题和结算。 -->
+<view class="page">
+  <text class="page-title">对战房间</text>
+  <text class="page-description">房间号：{{roomId}}</text>
+  <view wx:if="{{message}}" class="notice">{{message}}</view>
+
+  <view wx:if="{{room.status === 'waiting'}}" class="battle-card">
+    <text class="card-title">等待好友</text>
+    <view wx:for="{{room.players}}" wx:key="openid" class="player-row">
+      <text>{{item.nickname}}</text>
+      <text>{{item.ready ? '已准备' : '未准备'}}</text>
+    </view>
+    <button class="secondary-button" bindtap="toggleReady">我准备好了</button>
+    <button class="primary-button" open-type="share">邀请好友</button>
+    <button class="primary-button" bindtap="startBattle">开始对战</button>
+  </view>
+
+  <view wx:elif="{{room.status === 'playing'}}" class="battle-card">
+    <view class="score-board">
+      <view wx:for="{{room.players}}" wx:key="openid" class="score-item">
+        <text>{{item.nickname}}</text>
+        <text>{{item.score}} 分 · {{item.answeredCount}} / 10</text>
+      </view>
+    </view>
+    <view wx:if="{{currentQuestion}}">
+      <text class="word">{{currentQuestion.word}}</text>
+      <button
+        wx:for="{{currentQuestion.options}}"
+        wx:key="*this"
+        class="option-button {{selected === item ? 'option-selected' : ''}}"
+        data-value="{{item}}"
+        bindtap="chooseOption"
+      >{{item}}</button>
+    </view>
+    <text wx:else class="muted">等待好友完成</text>
+  </view>
+
+  <view wx:elif="{{room.status === 'finished'}}" class="battle-card">
+    <text class="card-title">对战结束</text>
+    <view wx:for="{{room.players}}" wx:key="openid" class="player-row">
+      <text>{{item.nickname}}</text>
+      <text>{{item.score}} 分</text>
+    </view>
+    <button class="primary-button" bindtap="openRanking">查看排行榜</button>
+    <button class="secondary-button" bindtap="goHome">回到首页</button>
+  </view>
+</view>

@@ -1,0 +1,17 @@
+<!-- 好友对战首页负责创建房间和通过房间号加入。 -->
+<view class="page">
+  <text class="page-title">好友对战</text>
+  <text class="page-description">创建房间后分享给好友，双方准备后实时答题。</text>
+
+  <view class="battle-card">
+    <text class="card-title">好友邀请</text>
+    <text class="muted">每局 10 题，答对 +10 分，胜利后计入排行榜。</text>
+    <button class="primary-button" loading="{{loading}}" bindtap="createBattleRoom">创建好友房间</button>
+  </view>
+
+  <view class="battle-card">
+    <text class="card-title">加入房间</text>
+    <input class="room-input" placeholder="输入房间号" value="{{roomId}}" bindinput="onRoomInput" />
+    <button class="secondary-button" loading="{{loading}}" bindtap="joinBattleRoom">加入对战</button>
+  </view>
+</view>

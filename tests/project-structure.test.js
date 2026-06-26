@@ -62,6 +62,12 @@ test('应用注册排行榜页', () => {
   assert.equal(app.pages.includes('pages/ranking/index'), true);
 });
 
+test('应用注册好友对战页面', () => {
+  const app = readApp();
+  assert.equal(app.pages.includes('pages/battle/index'), true);
+  assert.equal(app.pages.includes('pages/battle-room/index'), true);
+});
+
 test('首页展示云端状态提示区域', () => {
   const homePath = path.join(__dirname, '..', 'miniprogram', 'pages', 'home', 'index.wxml');
   const home = fs.readFileSync(homePath, 'utf8');

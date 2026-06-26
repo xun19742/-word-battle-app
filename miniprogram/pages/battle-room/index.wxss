@@ -1,0 +1,15 @@
+/* 房间页强调实时比分和当前题目，保持 MVP 信息密度低。 */
+.page-title { display: block; margin-top: 24rpx; font-size: 44rpx; font-weight: 700; }
+.page-description { display: block; margin: 8rpx 0 24rpx; color: #718096; font-size: 24rpx; }
+.notice { padding: 18rpx 22rpx; margin-bottom: 20rpx; color: #8a5a10; background: #fff8e6; border-radius: 18rpx; }
+.battle-card { padding: 30rpx; background: #fff; border-radius: 28rpx; box-shadow: 0 12rpx 36rpx rgba(72, 88, 160, 0.1); }
+.card-title { display: block; margin-bottom: 18rpx; font-size: 34rpx; font-weight: 700; }
+.player-row, .score-item { display: flex; align-items: center; justify-content: space-between; padding: 18rpx 0; color: #1f2a44; }
+.score-board { padding: 18rpx; margin-bottom: 22rpx; background: #eef0ff; border-radius: 20rpx; }
+.word { display: block; margin: 22rpx 0; font-size: 52rpx; font-weight: 700; text-align: center; }
+.option-button { margin: 18rpx 0; color: #1f2a44; background: #f6f8ff; border-radius: 20rpx; }
+.option-selected { color: #fff; background: #5968e8; }
+.option-button::after { border: 0; }
+.muted { display: block; color: #718096; text-align: center; }
+.secondary-button { color: #176c52; background: #e5f8f1; border-radius: 999rpx; }
+.secondary-button::after { border: 0; }
