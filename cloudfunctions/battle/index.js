@@ -36,7 +36,9 @@ async function getRoom(roomId) {
 }
 
 async function saveRoom(room) {
-  await db.collection('battle_rooms').doc(room._id).set({ data: room });
+  // CloudBase 文档 ID 只能用于定位文档，不能作为 data 字段重复写入。
+  const { _id, ...data } = room;
+  await db.collection('battle_rooms').doc(_id).set({ data });
   return room;
 }
 
